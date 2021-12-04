@@ -8,6 +8,11 @@ Let's explore [Inversion of Control](https://en.wikipedia.org/wiki/Inversion_of_
   - constructor
   - setter
   - property
+
+### DI with Spring
+- Qualifier
+- Primary Beans
+...
   
 ## Reference
 - Dependency Injection with Spring, section 3 of [Spring Framework 5: Beginner to-Guru](https://www.udemy.com/course/spring-framework-5-beginner-to-guru/)
