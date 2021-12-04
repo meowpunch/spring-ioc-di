@@ -1,17 +1,15 @@
 package com.example.iocdi.diWithSpring;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class SetterInjectedComponent {
+public class MyComponent {
 
-    private GreetingService greetingService;
+    final private GreetingService greetingService;
 
-    @Autowired
-    @Qualifier("setterGreetingService")
-    public void setGreetingService(GreetingService greetingService) {
+    // using a primary of implementations of GreetingService
+    public MyComponent(GreetingService greetingService) {
         this.greetingService = greetingService;
     }
 

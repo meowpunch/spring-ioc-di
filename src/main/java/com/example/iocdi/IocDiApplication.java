@@ -1,6 +1,7 @@
 package com.example.iocdi;
 
 import com.example.iocdi.diWithSpring.ConstructorInjectedComponent;
+import com.example.iocdi.diWithSpring.MyComponent;
 import com.example.iocdi.diWithSpring.PropertyInjectedComponent;
 import com.example.iocdi.diWithSpring.SetterInjectedComponent;
 import org.springframework.boot.SpringApplication;
@@ -17,7 +18,10 @@ public class IocDiApplication {
     public static void main(String[] args) {
 
         ApplicationContext applicationContext = SpringApplication.run(IocDiApplication.class, args);
-        // BeanCurrentlyInCreationException -> UnsatisfiedDependencyException
+        // in case with circular dependency, BeanCurrentlyInCreationException -> UnsatisfiedDependencyException
+
+        MyComponent myComponent = (MyComponent) applicationContext.getBean("myComponent");
+        System.out.println(myComponent.getGreeting());
 
         PropertyInjectedComponent propertyInjectedComponent = (PropertyInjectedComponent) applicationContext.getBean("propertyInjectedComponent");
         System.out.println(propertyInjectedComponent.getGreeting());

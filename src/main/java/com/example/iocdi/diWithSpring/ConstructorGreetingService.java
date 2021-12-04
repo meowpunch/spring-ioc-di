@@ -2,10 +2,11 @@ package com.example.iocdi.diWithSpring;
 
 import org.springframework.stereotype.Service;
 
+
 @Service
-public class GreetingServiceImpl implements GreetingService {
+public class ConstructorGreetingService implements GreetingService {
     @Override
     public String sayHello() {
-        return "hello world";
+        return "hello constructor";
     }
 }
