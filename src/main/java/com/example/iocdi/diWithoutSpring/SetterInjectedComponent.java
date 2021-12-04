@@ -1,10 +1,8 @@
-package com.example.iocdi.controller;
+package com.example.iocdi.diWithoutSpring;
 
-import com.example.iocdi.service.GreetingService;
+public class SetterInjectedComponent {
 
-public class SetterInjectedController {
-
-    public GreetingService greetingService;
+    private GreetingService greetingService;
 
     public void setGreetingService(GreetingService greetingService) {
         this.greetingService = greetingService;

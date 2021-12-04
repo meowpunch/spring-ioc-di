@@ -1,4 +1,4 @@
-package com.example.iocdi.service;
+package com.example.iocdi.diWithSpring;
 
 public interface GreetingService {
 

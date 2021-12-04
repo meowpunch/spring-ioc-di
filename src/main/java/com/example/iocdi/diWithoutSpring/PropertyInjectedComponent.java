@@ -1,8 +1,6 @@
-package com.example.iocdi.controller;
+package com.example.iocdi.diWithoutSpring;
 
-import com.example.iocdi.service.GreetingService;
-
-public class PropertyInjectedController {
+public class PropertyInjectedComponent {
 
     public GreetingService greetingService;
 

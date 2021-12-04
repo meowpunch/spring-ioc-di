@@ -1,7 +1,8 @@
 package com.example.iocdi;
 
-import com.example.iocdi.service.HelloService;
-import com.example.iocdi.service.WorldService;
+import com.example.iocdi.diWithSpring.ConstructorInjectedComponent;
+import com.example.iocdi.diWithSpring.PropertyInjectedComponent;
+import com.example.iocdi.diWithSpring.SetterInjectedComponent;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -14,17 +15,18 @@ public class IocDiApplication {
     final private static Logger LOGGER = Logger.getLogger(IocDiApplication.class.getName());
 
     public static void main(String[] args) {
-        try {
-            ApplicationContext applicationContext = SpringApplication.run(IocDiApplication.class, args);
-            // BeanCurrentlyInCreationException -> UnsatisfiedDependencyException
 
-            HelloService helloService = (HelloService) applicationContext.getBean("helloService");
-            WorldService worldService = (WorldService) applicationContext.getBean("worldService");
-            System.out.println(helloService.hello());
-            System.out.println(worldService.world());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        ApplicationContext applicationContext = SpringApplication.run(IocDiApplication.class, args);
+        // BeanCurrentlyInCreationException -> UnsatisfiedDependencyException
+
+        PropertyInjectedComponent propertyInjectedComponent = (PropertyInjectedComponent) applicationContext.getBean("propertyInjectedComponent");
+        System.out.println(propertyInjectedComponent.getGreeting());
+
+        SetterInjectedComponent setterInjectedComponent = (SetterInjectedComponent) applicationContext.getBean("setterInjectedComponent");
+        System.out.println(setterInjectedComponent.getGreeting());
+
+        ConstructorInjectedComponent constructorInjectedComponent = (ConstructorInjectedComponent) applicationContext.getBean("constructorInjectedComponent");
+        System.out.println(constructorInjectedComponent.getGreeting());
 
     }
 
