@@ -1,11 +1,12 @@
-package com.example.iocdi.diWithSpring;
+package com.example.iocdi.diWithSpring.controller;
 
+import com.example.iocdi.diWithSpring.service.GreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class PropertyInjectedComponent {
+public class PropertyInjectedController {
 
 
     @Autowired

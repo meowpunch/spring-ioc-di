@@ -1,14 +1,15 @@
-package com.example.iocdi.diWithSpring;
+package com.example.iocdi.diWithSpring.controller;
 
+import com.example.iocdi.diWithSpring.service.GreetingService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class ConstructorInjectedComponent {
+public class ConstructorInjectedController {
 
     final private GreetingService greetingService;
 
-    public ConstructorInjectedComponent(@Qualifier("constructorGreetingService") GreetingService greetingService) {
+    public ConstructorInjectedController(@Qualifier("constructorGreetingService") GreetingService greetingService) {
         this.greetingService = greetingService;
     }
 

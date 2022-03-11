@@ -1,9 +1,9 @@
 package com.example.iocdi;
 
-import com.example.iocdi.diWithSpring.ConstructorInjectedComponent;
-import com.example.iocdi.diWithSpring.MyComponent;
-import com.example.iocdi.diWithSpring.PropertyInjectedComponent;
-import com.example.iocdi.diWithSpring.SetterInjectedComponent;
+import com.example.iocdi.diWithSpring.controller.ConstructorInjectedController;
+import com.example.iocdi.diWithSpring.controller.MyController;
+import com.example.iocdi.diWithSpring.controller.PropertyInjectedController;
+import com.example.iocdi.diWithSpring.controller.SetterInjectedController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -20,17 +20,17 @@ public class IocDiApplication {
         ApplicationContext applicationContext = SpringApplication.run(IocDiApplication.class, args);
         // in case with circular dependency, BeanCurrentlyInCreationException -> UnsatisfiedDependencyException
 
-        MyComponent myComponent = (MyComponent) applicationContext.getBean("myComponent");
-        System.out.println(myComponent.getGreeting());
+        MyController myController = (MyController) applicationContext.getBean("myController");
+        System.out.println(myController.getGreeting());
 
-        PropertyInjectedComponent propertyInjectedComponent = (PropertyInjectedComponent) applicationContext.getBean("propertyInjectedComponent");
+        PropertyInjectedController propertyInjectedComponent = (PropertyInjectedController) applicationContext.getBean("propertyInjectedController");
         System.out.println(propertyInjectedComponent.getGreeting());
 
-        SetterInjectedComponent setterInjectedComponent = (SetterInjectedComponent) applicationContext.getBean("setterInjectedComponent");
+        SetterInjectedController setterInjectedComponent = (SetterInjectedController) applicationContext.getBean("setterInjectedController");
         System.out.println(setterInjectedComponent.getGreeting());
 
-        ConstructorInjectedComponent constructorInjectedComponent = (ConstructorInjectedComponent) applicationContext.getBean("constructorInjectedComponent");
-        System.out.println(constructorInjectedComponent.getGreeting());
+        ConstructorInjectedController constructorInjectedController = (ConstructorInjectedController) applicationContext.getBean("constructorInjectedController");
+        System.out.println(constructorInjectedController.getGreeting());
 
     }
 

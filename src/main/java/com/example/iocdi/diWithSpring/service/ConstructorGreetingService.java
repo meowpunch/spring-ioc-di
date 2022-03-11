@@ -1,4 +1,4 @@
-package com.example.iocdi.diWithSpring;
+package com.example.iocdi.diWithSpring.service;
 
 import org.springframework.stereotype.Service;
 

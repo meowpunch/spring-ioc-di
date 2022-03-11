@@ -1,15 +1,15 @@
-package com.example.iocdi.diWithSpring;
+package com.example.iocdi.diWithSpring.controller;
 
-import org.springframework.beans.factory.annotation.Qualifier;
+import com.example.iocdi.diWithSpring.service.GreetingService;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class MyComponent {
+public class MyController {
 
     final private GreetingService greetingService;
 
     // using a primary of implementations of GreetingService
-    public MyComponent(GreetingService greetingService) {
+    public MyController(GreetingService greetingService) {
         this.greetingService = greetingService;
     }
 
