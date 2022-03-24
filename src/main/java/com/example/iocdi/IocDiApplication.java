@@ -1,9 +1,6 @@
 package com.example.iocdi;
 
-import com.example.iocdi.diWithSpring.controller.ConstructorInjectedController;
-import com.example.iocdi.diWithSpring.controller.MyController;
-import com.example.iocdi.diWithSpring.controller.PropertyInjectedController;
-import com.example.iocdi.diWithSpring.controller.SetterInjectedController;
+import com.example.iocdi.diWithSpring.controller.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -19,6 +16,9 @@ public class IocDiApplication {
 
         ApplicationContext applicationContext = SpringApplication.run(IocDiApplication.class, args);
         // in case with circular dependency, BeanCurrentlyInCreationException -> UnsatisfiedDependencyException
+
+        InternationalController i18nController = (InternationalController) applicationContext.getBean("internationalController");
+        System.out.println(i18nController.getGreeting());
 
         MyController myController = (MyController) applicationContext.getBean("myController");
         System.out.println(myController.getGreeting());
