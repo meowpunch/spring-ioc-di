@@ -56,22 +56,73 @@ class MethodSignatureAndType {
 }
 
 class DoubleDispatcher {
-  interface Content {}
-  record Text () implements Content {}
-  record Picture () implements Content {}
+  interface Content {
+    void postOn(SNSService service);
+  }
+  record Text () implements Content {
 
-  interface SNSService {
-    default void post(Content content) {
-      System.out.println("Success to post " + content.getClass().getSimpleName() + " to " + this.getClass().getSimpleName());
+    @Override
+    public void postOn(SNSService service) {
+      service.post(this);
     }
   }
-  static class Facebook implements SNSService {}
-  static class Twitter implements SNSService {}
-  static class TicTok implements SNSService {}
+  record Picture () implements Content {
 
+    @Override
+    public void postOn(SNSService service) {
+      service.post(this);
+    }
+  }
+
+  interface SNSService {
+    void post(Text text);
+    void post(Picture picture);
+  }
+  static class Facebook implements SNSService {
+
+    @Override
+    public void post(Text text) {
+      System.out.println("process text to post Facebook");
+    }
+
+    @Override
+    public void post(Picture picture) {
+      System.out.println("process picture to post Facebook");
+    }
+  }
+  static class Twitter implements SNSService {
+
+    @Override
+    public void post(Text text) {
+      System.out.println("process text to post Twitter");
+    }
+
+    @Override
+    public void post(Picture picture) {
+      System.out.println("process picture to post Twitter");
+    }
+  }
+  static class TicTok implements SNSService {
+
+    @Override
+    public void post(Text text) {
+      System.out.println("process text to post TicTok");
+    }
+
+    @Override
+    public void post(Picture picture) {
+      System.out.println("process picture to post TicTok");
+    }
+  }
+
+  /*
+       Which parts should be extensible? Service tend to be added easily. The number of content's type would be more stable.
+
+   */
   static final List<SNSService> allServices = List.of(new Facebook(), new Twitter(), new TicTok());
+  static final Stream<Content> contentStream = Stream.of(new Text(), new Picture());
   public static void main(String[] args) {
     // post contents to all services
-    Stream.of(new Text(), new Picture()).forEach(content -> allServices.forEach(s -> s.post(content)));
+    contentStream.forEach(content -> allServices.forEach(content::postOn));
   }
 }
