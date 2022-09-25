@@ -119,9 +119,9 @@ class DoubleDispatcher {
   }
 
   /*
-       Java only supports single dispatch which targets receiver not argument
+       Java only supports single dispatch which targets receiver not argument. So, we have to use single dispatch twice for double dispatch
 
-       Which parts should be extensible? Service tend to be added easily. The number of content's type would be more stable.
+       Which parts should be extensible? Service tend to be added easily. The number of content's type would not change well.
        Double dispatch makes it easier to add new SNS Service.
    */
   static final List<SNSService> allServices = List.of(new Facebook(), new Twitter(), new TicTok());
