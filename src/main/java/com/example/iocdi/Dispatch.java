@@ -62,7 +62,9 @@ class DoubleDispatcher {
   record Text () implements Content {
 
     @Override
+    // in visitor pattern, SNSService - visitor, post - visit
     public void postOn(SNSService service) {
+      // dynamic dispatch for service
       service.post(this);
     }
   }
@@ -75,6 +77,7 @@ class DoubleDispatcher {
   }
 
   interface SNSService {
+    // in visitor pattern, it would be visit method
     void post(Text text);
     void post(Picture picture);
   }
@@ -116,13 +119,15 @@ class DoubleDispatcher {
   }
 
   /*
-       Which parts should be extensible? Service tend to be added easily. The number of content's type would be more stable.
+       Java only supports single dispatch which targets receiver not argument
 
+       Which parts should be extensible? Service tend to be added easily. The number of content's type would be more stable.
+       Double dispatch makes it easier to add new SNS Service.
    */
   static final List<SNSService> allServices = List.of(new Facebook(), new Twitter(), new TicTok());
   static final Stream<Content> contentStream = Stream.of(new Text(), new Picture());
   public static void main(String[] args) {
-    // post contents to all services
+    // service -> content.postOn(service) : dynamic dispatch for content, which determines which subclass(Text, Picture)'s method will be used
     contentStream.forEach(content -> allServices.forEach(content::postOn));
   }
 }
