@@ -71,6 +71,7 @@ class DoubleDispatcher {
 
   static final List<SNSService> allServices = List.of(new Facebook(), new Twitter(), new TicTok());
   public static void main(String[] args) {
+    // post contents to all services
     Stream.of(new Text(), new Picture()).forEach(content -> allServices.forEach(s -> s.post(content)));
   }
 }
