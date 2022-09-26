@@ -1,11 +1,19 @@
 package com.example.iocdi;
 
+import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.List;
 
 public class Generics {
 
-  static class A {}
-  static class B extends A {}
+  static class A {
+
+  }
+
+  static class B extends A {
+
+  }
+
   static <T extends Comparable<T>> List<T> greaterThan(List<T> list, T t) {
     return list.stream().filter(e -> t.compareTo(e) > 0).toList();
   }
@@ -37,6 +45,7 @@ public class Generics {
     // compile error. B extends A but List<B> doesn't extend List<A>
     // List<A> aList = bList;
     List<? extends A> aList = bList;
+    List<? extends Number> numbers = List.of(Integer.valueOf("0"), Long.MAX_VALUE, BigDecimal.valueOf(10));
 
     System.out.println(greaterThan(List.of(1, 2, 3, 4, 5, 6), 5));
     System.out.println(greaterThan(List.of("a", "b", "c", "d", "e", "f"), "e"));
@@ -47,5 +56,17 @@ public class Generics {
     printGenericList(integerList);
     printWildList(integerList);
   }
+}
 
+class AdvancedGenerics {
+
+  private static <T extends Comparable<T>> T max(List<T> list) {
+    return list.stream().reduce((a, b) -> a.compareTo(b) > 0 ? a : b).orElseThrow();
+  }
+
+  private static <T extends Comparable<? super T>> T advancedMax(List<? extends T> list) {
+    return list.stream().reduce((a, b) -> a.compareTo(b) > 0 ? a : b).orElseThrow();
+  }
+
+  public static void main(String[] args) {}
 }
