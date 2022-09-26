@@ -10,6 +10,10 @@
 ### Super Type Token
 - type token
 
+### Generics
+- upper bound vs lower bound
+- wild card
+
 ## Dependency Injection and Inversion of Control
 One of the [Spring Framework's core technologies](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-introduction) is Inversion of Control (IoC) container.
 Let's explore [Inversion of Control](https://en.wikipedia.org/wiki/Inversion_of_control) in Spring and [Dependency Injection](https://en.wikipedia.org/wiki/Dependency_injection) which is a design pattern of examples to implement IoC.
