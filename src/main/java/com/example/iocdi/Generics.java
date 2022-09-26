@@ -20,7 +20,8 @@ public class Generics {
 
   public static void main(String[] args) {
     List<B> bList = List.of(new B(), new B());
-//    List<A> aList = bList;
+    // compile error. B extends A but List<B> doesn't extend List<A>
+    // List<A> aList = bList;
     List<? extends A> aList = bList;
 
     System.out.println(greaterThan(List.of(1, 2, 3, 4, 5, 6), 5));
