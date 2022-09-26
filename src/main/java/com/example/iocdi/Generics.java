@@ -14,8 +14,22 @@ public class Generics {
     objectList.forEach(System.out::println);
   }
 
+  // not recommended
+  static <T> void printGenericList(List<T> list) {
+    list.forEach(System.out::println);
+  }
+
   static void printWildList(List<?> list) {
     list.forEach(System.out::println);
+  }
+
+  // not recommended
+  static <T> long genericFrequency(List<T> list, T t) {
+    return list.stream().filter(t::equals).count();
+  }
+
+  static long wildFrequency(List<?> list, Object o) {
+    return list.stream().filter(o::equals).count();
   }
 
   public static void main(String[] args) {
@@ -30,6 +44,7 @@ public class Generics {
     printList(List.of(1, 2, 3, 4, 5, 6));
     List<Integer> integerList = List.of(1, 2, 3, 4, 5, 6);
 //    printList(integerList);
+    printGenericList(integerList);
     printWildList(integerList);
   }
 
